@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software - Clave Digital</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #f9fafb; }
+        .product-card { background-color: #1f2937; border: 1px solid #374151; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2); }
+        .info-icon { color: #9ca3af; transition: color 0.2s ease; }
+        .info-icon:hover { color: #ffffff; }
+        .details-content { transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out, opacity 0.4s; max-height: 0; overflow: hidden; padding-top: 0; padding-bottom: 0; opacity: 0; }
+        .details-content.open { max-height: 500px; padding-top: 0.75rem; opacity: 1; }
+        .quantity-input::-webkit-outer-spin-button, .quantity-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .quantity-input[type=number] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- =========== Encabezado y Navegación =========== -->
+    <header class="bg-[#111827]/80 backdrop-blur-lg border-b border-gray-700 sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center"><img src="https://ia600907.us.archive.org/3/items/clave-digital/Clave%20Digital.png" alt="Logo de Clave Digital" class="h-12 w-auto"></a>
+            <ul class="hidden lg:flex items-center space-x-6 text-sm font-semibold text-gray-300">
+                <li><a href="streaming.html" class="hover:text-white">Streaming</a></li>
+                <li><a href="software.html" class="hover:text-white">Software</a></li>
+                <li><a href="licencias.html" class="hover:text-white">Licencias</a></li>
+                <li><a href="pagos.html" class="hover:text-white">Métodos de Pago</a></li>
+                <li><a href="porque-elegirnos.html" class="hover:text-white">¿Por Qué Elegirnos?</a></li>
+                <li><a href="unete.html" class="hover:text-white">Únete a Nosotros</a></li>
+            </ul>
+            <div class="lg:hidden"><button id="menu-btn" class="text-white focus:outline-none"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <ul class="px-4 pb-4 space-y-2 text-sm text-center">
+                <li><a href="streaming.html" class="block py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white">Streaming</a></li>
+                <li><a href="software.html" class="block py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white">Software</a></li>
+                <li><a href="licencias.html" class="block py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white">Licencias</a></li>
+                <li><a href="pagos.html" class="block py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white">Métodos de Pago</a></li>
+                <li><a href="porque-elegirnos.html" class="block py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white">¿Por Qué Elegirnos?</a></li>
+                <li><a href="unete.html" class="block py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white">Únete a Nosotros</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <section>
+                <h2 class="text-3xl font-bold border-l-4 border-emerald-400 pl-4 mb-8">Software por Suscripción</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Producto 1: Autodesk -->
+                    <div class="product-card rounded-lg" data-id="sw01" data-name="Autodesk APPS (1 Año)" data-price="50.00" data-category="Software">
+                        <img src="https://placehold.co/400x300/111827/ffffff?text=Autodesk+APPS" alt="[Imagen de Autodesk APPS]" class="w-full h-40 object-cover rounded-t-lg">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg">Autodesk APPS</h3>
+                                <button class="info-icon p-1 rounded-full flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+                            </div>
+                            <span class="text-xs font-medium bg-amber-500 text-white px-2 py-1 rounded-full self-start my-2">1 Año</span>
+                            <div class="details-content text-xs text-gray-300"><p>• Incluye AutoCAD, Revit, Maya, etc.<br>• Actualizaciones durante 1 año.</p></div>
+                            <div class="mt-auto pt-2">
+                                <p class="text-2xl font-bold">S/ 50.00 <span class="text-sm font-normal text-gray-400">($13.33 aprox.)</span></p>
+                                <div class="flex items-center justify-center space-x-3 mt-3">
+                                    <button class="quantity-btn decrement bg-gray-600 hover:bg-gray-500 text-white rounded-full w-8 h-8 font-bold transition-colors">-</button>
+                                    <input type="number" class="quantity-input w-16 text-center bg-gray-700 border border-gray-600 rounded-md text-white" value="0" min="0">
+                                    <button class="quantity-btn increment bg-emerald-500 hover:bg-emerald-600 text-white rounded-full w-8 h-8 font-bold transition-colors">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2: Office 365 -->
+                    <div class="product-card rounded-lg" data-id="sw02" data-name="Microsoft Office 365 (1 Año)" data-price="40.00" data-category="Software">
+                        <img src="https://placehold.co/400x300/111827/ffffff?text=Office+365" alt="[Imagen de Office 365]" class="w-full h-40 object-cover rounded-t-lg">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg">Microsoft Office 365</h3>
+                                <button class="info-icon p-1 rounded-full flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+                            </div>
+                            <span class="text-xs font-medium bg-amber-500 text-white px-2 py-1 rounded-full self-start my-2">1 Año</span>
+                            <div class="details-content text-xs text-gray-300"><p>• Incluye Word, Excel, PowerPoint, etc.<br>• 1TB de almacenamiento en OneDrive.</p></div>
+                            <div class="mt-auto pt-2">
+                                <p class="text-2xl font-bold">S/ 40.00 <span class="text-sm font-normal text-gray-400">($10.67 aprox.)</span></p>
+                                <div class="flex items-center justify-center space-x-3 mt-3">
+                                    <button class="quantity-btn decrement bg-gray-600 hover:bg-gray-500 text-white rounded-full w-8 h-8 font-bold transition-colors">-</button>
+                                    <input type="number" class="quantity-input w-16 text-center bg-gray-700 border border-gray-600 rounded-md text-white" value="0" min="0">
+                                    <button class="quantity-btn increment bg-emerald-500 hover:bg-emerald-600 text-white rounded-full w-8 h-8 font-bold transition-colors">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3: Adobe CC -->
+                    <div class="product-card rounded-lg" data-id="sw03" data-name="Adobe Creative Cloud (1 Mes)" data-price="50.00" data-category="Software">
+                        <img src="https://placehold.co/400x300/111827/ffffff?text=Adobe+CC" alt="[Imagen de Adobe CC]" class="w-full h-40 object-cover rounded-t-lg">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg">Adobe Creative Cloud</h3>
+                                <button class="info-icon p-1 rounded-full flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+                            </div>
+                            <span class="text-xs font-medium bg-red-600 text-white px-2 py-1 rounded-full self-start my-2">1 Mes</span>
+                            <div class="details-content text-xs text-gray-300"><p>• Acceso a todas las apps: Photoshop, Illustrator, Premiere, etc.</p></div>
+                            <div class="mt-auto pt-2">
+                                <p class="text-2xl font-bold">S/ 50.00 <span class="text-sm font-normal text-gray-400">($13.33 aprox.)</span></p>
+                                <div class="flex items-center justify-center space-x-3 mt-3">
+                                    <button class="quantity-btn decrement bg-gray-600 hover:bg-gray-500 text-white rounded-full w-8 h-8 font-bold transition-colors">-</button>
+                                    <input type="number" class="quantity-input w-16 text-center bg-gray-700 border border-gray-600 rounded-md text-white" value="0" min="0">
+                                    <button class="quantity-btn increment bg-emerald-500 hover:bg-emerald-600 text-white rounded-full w-8 h-8 font-bold transition-colors">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- =========== Pie de Página del Carrito (Sticky) =========== -->
+    <footer class="bg-gray-900/90 backdrop-blur-sm sticky bottom-0 border-t border-gray-700 z-40">
+        <div class="container mx-auto px-6 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-lg font-bold text-white">
+                Total: S/ <span id="total-price">0.00</span>
+            </div>
+            <button id="buy-button" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg w-full sm:w-auto transition-all duration-300 disabled:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                Completar Pedido por WhatsApp
+            </button>
+        </div>
+    </footer>
+
+    <!-- =========== Pie de Página Original =========== -->
+    <footer class="bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-gray-400 text-sm">
+            <div class="text-center">
+                <p>&copy; 2025 Clave Digital. Todos los derechos reservados.</p>
+                <p class="mt-2">Tu tienda de confianza para software y entretenimiento digital.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- SCRIPTS DE LA PÁGINA (MENÚ Y DETALLES) ---
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.info-icon').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const card = button.closest('.product-card');
+                if (!card) return;
+                const content = card.querySelector('.details-content');
+                if (!content) return;
+                const isOpening = !content.classList.contains('open');
+                document.querySelectorAll('.details-content.open').forEach(openContent => {
+                    if (openContent !== content) openContent.classList.remove('open');
+                });
+                if (isOpening) {
+                    content.classList.add('open');
+                } else {
+                    content.classList.remove('open');
+                }
+            });
+        });
+
+        // --- SCRIPT DEL CARRITO DE COMPRAS ---
+        const productContainers = document.querySelectorAll('.product-card[data-id]');
+        const totalPriceEl = document.getElementById('total-price');
+        const buyButton = document.getElementById('buy-button');
+        
+        const phoneNumber = '51943129913';
+        const storeName = 'Clave Digital';
+        const titleMessage = '¡Hola! 👋 Quisiera hacer el siguiente pedido desde su web:';
+
+        const updateCart = () => {
+            let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            productContainers.forEach(product => {
+                const id = product.dataset.id;
+                const quantity = parseInt(product.querySelector('.quantity-input').value);
+                const existingItemIndex = cart.findIndex(item => item.id === id);
+
+                if (quantity > 0) {
+                    const itemData = {
+                        id: id,
+                        name: product.dataset.name,
+                        price: parseFloat(product.dataset.price),
+                        category: product.dataset.category,
+                        quantity: quantity
+                    };
+                    if (existingItemIndex > -1) {
+                        cart[existingItemIndex] = itemData;
+                    } else {
+                        cart.push(itemData);
+                    }
+                } else {
+                    if (existingItemIndex > -1) {
+                        cart.splice(existingItemIndex, 1);
+                    }
+                }
+            });
+
+            localStorage.setItem('shoppingCart', JSON.stringify(cart));
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            totalPriceEl.textContent = total.toFixed(2);
+            buyButton.disabled = total === 0;
+        };
+
+        const loadCart = () => {
+            const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            productContainers.forEach(product => {
+                const id = product.dataset.id;
+                const cartItem = cart.find(item => item.id === id);
+                product.querySelector('.quantity-input').value = cartItem ? cartItem.quantity : 0;
+            });
+        };
+        
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const input = e.target.closest('.product-card').querySelector('.quantity-input');
+                let quantity = parseInt(input.value);
+                if (e.target.classList.contains('increment')) {
+                    quantity++;
+                } else if (e.target.classList.contains('decrement') && quantity > 0) {
+                    quantity--;
+                }
+                input.value = quantity;
+                updateCart();
+            });
+        });
+
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', () => {
+                if(parseInt(input.value) < 0 || input.value === '') input.value = 0;
+                updateCart();
+            });
+        });
+
+        buyButton.addEventListener('click', () => {
+            const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            if (cart.length === 0) return;
+
+            // ***** LÓGICA MEJORADA PARA AGRUPAR POR CATEGORÍA *****
+            let message = `${titleMessage}\n\n`;
+            const grouped = cart.reduce((acc, item) => {
+                acc[item.category] = acc[item.category] || [];
+                acc[item.category].push(item);
+                return acc;
+            }, {});
+
+            for (const category in grouped) {
+                message += `*${category}:*\n`;
+                grouped[category].forEach(item => {
+                    message += `- ${item.name} (Cantidad: ${item.quantity})\n`;
+                });
+                message += '\n'; // Espacio entre categorías
+            }
+            
+            const total = totalPriceEl.textContent;
+            message += `*Total a pagar: S/ ${total}*`;
+            message += `\n\nQuedo a la espera de las instrucciones para el pago. Gracias.`;
+            
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message.trim())}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+
+        loadCart();
+        updateCart();
+    });
+    </script>
+</body>
+</html>
