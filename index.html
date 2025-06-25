@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Un Mensaje Secreto</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -75,10 +73,14 @@
 </head>
 <body class="bg-slate-900 flex items-center justify-center min-h-screen p-4">
 
+    <audio id="background-audio" loop>
+        <source src="https://ia601505.us.archive.org/17/items/my-heart-will-go-on_202506/My%20Heart%20Will%20Go%20On.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
     <div id="card-container" class="w-full max-w-lg bg-gray-900 rounded-2xl shadow-2xl">
         <canvas id="particle-canvas"></canvas>
         
-        <!-- === PANTALLA 1: LA PUERTA DE ENTRADA === -->
         <div id="setup-screen" class="p-8 md:p-10 content-layer rounded-2xl">
             <div class="text-center text-white">
                 <h1 class="font-handwriting text-4xl text-sky-400">Un Mensaje Secreto</h1>
@@ -99,16 +101,20 @@
             </div>
         </div>
 
-        <!-- === PANTALLA 2: EL MENSAJE REVELADO === -->
-        <div id="interactive-card-screen" class="hidden p-8 md:p-10 content-layer rounded-2xl">
+        <div id="interactive-card-screen" class="hidden p-8 md:p-10 content-layer rounded-2xl relative">
+            
+            <button id="mute-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors duration-300 z-10">
+                <svg id="icon-sound-on" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <svg id="icon-sound-off" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l-5-5m0 5l5-5"></path></svg>
+            </button>
+
             <div class="text-center">
                 <h2 id="welcome-message" class="font-handwriting text-4xl text-amber-300"></h2>
                 <h3 id="day-subtitle" class="font-serif-elegant text-xl text-sky-300 italic mt-2 opacity-0 transition-opacity duration-1000"></h3>
             </div>
 
             <div id="message-container" class="mt-6 space-y-4 text-center text-slate-200 text-xl md:text-2xl min-h-[22rem]">
-                <!-- Los mensajes se escribirán aquí -->
-            </div>
+                </div>
 
             <div class="text-center mt-8 opacity-0" id="final-signature">
                 <p class="text-3xl text-sky-300 font-handwriting">Gracias, por siempre.</p>
@@ -117,8 +123,8 @@
 
             <div class="mt-10 text-center">
                  <button id="reset-btn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-1000 opacity-0 pointer-events-none">
-                    Cerrar tarjeta
-                </button>
+                     Cerrar tarjeta
+                 </button>
             </div>
         </div>
     </div>
@@ -135,6 +141,11 @@
     const daySubtitle = document.getElementById('day-subtitle');
     const messageContainer = document.getElementById('message-container');
     const finalSignature = document.getElementById('final-signature');
+    // --- NUEVOS ELEMENTOS DE AUDIO ---
+    const backgroundAudio = document.getElementById('background-audio');
+    const muteBtn = document.getElementById('mute-btn');
+    const iconSoundOn = document.getElementById('icon-sound-on');
+    const iconSoundOff = document.getElementById('icon-sound-off');
 
     // --- PARTICLE ENGINE ---
     const canvas = document.getElementById('particle-canvas');
@@ -201,7 +212,8 @@
         "Por todo eso, este mensaje es más que un simple agradecimiento. Es el eco de tu esfuerzo, la prueba viviente de que tu siembra floreció en el lugar más fértil: nuestra mente."
     ];
     
-    const CORRECT_NAME = "jason";
+    // --- CAMBIO DE CLAVE ---
+    const CORRECT_NAME = "pamela massiel";
 
     generateBtn.addEventListener('click', () => {
         const recipientName = recipientNameInput.value.trim().toLowerCase();
@@ -209,13 +221,22 @@
         recipientNameInput.classList.remove('shake');
         if (recipientName === CORRECT_NAME) {
             errorMessage.textContent = '';
-            welcomeMessage.textContent = `Hola, ${recipientName.charAt(0).toUpperCase() + recipientName.slice(1)}`;
+            // Capitalizamos el primer nombre para el saludo
+            const formattedName = recipientName.split(' ')[0];
+            welcomeMessage.textContent = `Hola, ${formattedName.charAt(0).toUpperCase() + formattedName.slice(1)}`;
             switchScreens();
         } else {
             errorMessage.textContent = 'Este mensaje no parece ser para ti...';
             void recipientNameInput.offsetWidth;
             recipientNameInput.classList.add('shake');
         }
+    });
+    
+    // --- LÓGICA DEL BOTÓN DE SILENCIO ---
+    muteBtn.addEventListener('click', () => {
+        backgroundAudio.muted = !backgroundAudio.muted;
+        iconSoundOn.classList.toggle('hidden', backgroundAudio.muted);
+        iconSoundOff.classList.toggle('hidden', !backgroundAudio.muted);
     });
 
     resetBtn.addEventListener('click', () => {
@@ -225,6 +246,10 @@
         messageContainer.innerHTML = '';
         finalSignature.style.opacity = '0';
         resetBtn.classList.add('opacity-0', 'pointer-events-none');
+        
+        // --- DETENER Y REINICIAR LA MÚSICA ---
+        backgroundAudio.pause();
+        backgroundAudio.currentTime = 0;
     });
 
     function switchScreens() {
@@ -232,6 +257,12 @@
         interactiveCardScreen.classList.remove('hidden');
         interactiveCardScreen.classList.add('fade-in');
         
+        // --- REPRODUCIR MÚSICA ---
+        // Usamos una promesa para evitar errores en algunos navegadores
+        backgroundAudio.play().catch(error => {
+            console.log("La reproducción automática fue bloqueada por el navegador. Se requiere interacción del usuario.");
+        });
+
         daySubtitle.textContent = "Feliz Día del Maestro";
         setTimeout(() => { daySubtitle.style.opacity = '1'; }, 500);
 
