@@ -141,7 +141,6 @@
     const daySubtitle = document.getElementById('day-subtitle');
     const messageContainer = document.getElementById('message-container');
     const finalSignature = document.getElementById('final-signature');
-    // --- NUEVOS ELEMENTOS DE AUDIO ---
     const backgroundAudio = document.getElementById('background-audio');
     const muteBtn = document.getElementById('mute-btn');
     const iconSoundOn = document.getElementById('icon-sound-on');
@@ -205,15 +204,18 @@
     // --- MAIN LOGIC ---
     const appreciationMessages = [
         "Dicen que algunos enseñan lo que saben, pero tú nos mostraste cómo construirlo, convirtiendo el aula en un taller de ideas.",
+        "Nos entregaste herramientas, no solo respuestas. Forjaste en nosotros la autonomía para construir nuestro propio conocimiento, ladrillo a ladrillo, sobre cimientos firmes.",
         "Donde muchos veían un deber, tú encarnaste un acto de fe: la certeza de que en cada mente dormía un universo por descubrir.",
+        "Vimos tu paciencia infinita, esa calma que transformaba la frustración en un nuevo intento. No era solo enseñar; era sostener, era creer en nosotros incluso cuando dudábamos.",
         "En la silenciosa batalla diaria, no solo impartiste conocimiento; fuiste arquitecto de la confianza, demoliendo los muros del 'no puedo'.",
+        "Fuiste faro en la niebla de la incertidumbre. Nos enseñaste que el error no es un fracaso, sino una valiosa lección en el viaje hacia el entendimiento.",
         "Cada palabra tuya fue un mapa; cada corrección, una brújula precisa. Nos guiaste a entender que el saber no es un puerto, sino el mar entero.",
-        "Hay un legado invisible en tu labor, uno que no aparece en las calificaciones: es el pensamiento crítico, la chispa de la curiosidad.",
-        "Por todo eso, este mensaje es más que un simple agradecimiento. Es el eco de tu esfuerzo, la prueba viviente de que tu siembra floreció en el lugar más fértil: nuestra mente."
+        "Hay un legado invisible en tu labor, uno que no aparece en las calificaciones: es el pensamiento crítico, la chispa de la curiosidad y el coraje para hacer preguntas.",
+        "El conocimiento que sembraste tiene raíces profundas. No es algo que se olvida tras un examen, sino una nueva forma de ver el mundo y de retar nuestras propias limitaciones.",
+        "Por todo eso, y por mucho más que las palabras no alcanzan a expresar, este mensaje es más que un simple agradecimiento. Es el eco de tu esfuerzo, la prueba viviente de que tu siembra floreció en el lugar más fértil: nuestra mente."
     ];
     
-    // --- CAMBIO DE CLAVE ---
-    const CORRECT_NAME = "pamela massiel";
+    const CORRECT_NAME = "pamela";
 
     generateBtn.addEventListener('click', () => {
         const recipientName = recipientNameInput.value.trim().toLowerCase();
@@ -221,7 +223,6 @@
         recipientNameInput.classList.remove('shake');
         if (recipientName === CORRECT_NAME) {
             errorMessage.textContent = '';
-            // Capitalizamos el primer nombre para el saludo
             const formattedName = recipientName.split(' ')[0];
             welcomeMessage.textContent = `Hola, ${formattedName.charAt(0).toUpperCase() + formattedName.slice(1)}`;
             switchScreens();
@@ -232,7 +233,6 @@
         }
     });
     
-    // --- LÓGICA DEL BOTÓN DE SILENCIO ---
     muteBtn.addEventListener('click', () => {
         backgroundAudio.muted = !backgroundAudio.muted;
         iconSoundOn.classList.toggle('hidden', backgroundAudio.muted);
@@ -247,7 +247,6 @@
         finalSignature.style.opacity = '0';
         resetBtn.classList.add('opacity-0', 'pointer-events-none');
         
-        // --- DETENER Y REINICIAR LA MÚSICA ---
         backgroundAudio.pause();
         backgroundAudio.currentTime = 0;
     });
@@ -257,10 +256,8 @@
         interactiveCardScreen.classList.remove('hidden');
         interactiveCardScreen.classList.add('fade-in');
         
-        // --- REPRODUCIR MÚSICA ---
-        // Usamos una promesa para evitar errores en algunos navegadores
         backgroundAudio.play().catch(error => {
-            console.log("La reproducción automática fue bloqueada por el navegador. Se requiere interacción del usuario.");
+            console.log("La reproducción automática fue bloqueada. Se requiere interacción del usuario.");
         });
 
         daySubtitle.textContent = "Feliz Día del Maestro";
